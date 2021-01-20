@@ -53,14 +53,6 @@ void printCharacterStats(Character* character)
 	std::cout << "Defense: " << character->getDefense() << std::endl;
 }
 
-void printCharacterStats(Player* character)
-{
-	std::cout << "Name: " << character->getName << std::endl;
-	std::cout << "Health: " << character->getHealth << std::endl;
-	std::cout << "Attack Power: " << character->getDamage() << std::endl;
-	std::cout << "Defense: " << character->getDefense() << std::endl;
-}
-
 /// <summary>
 /// Begins a battle between the player and the given character. 
 /// Gets player input for decisions and loops until either the player or the character is dead.
@@ -76,7 +68,7 @@ void printCharacterStats(Player* character)
 int startPlayerBattle(Player* player, Enemy* enemy)
 {
 	//Loop while both the enemy and player are alive.
-	while (player->getHealth > 0 && enemy->getHealth > 0)
+	while (player->getHealth() > 0 & enemy->getHealth() > 0)
 	{
 		system("cls");
 
@@ -95,12 +87,15 @@ int startPlayerBattle(Player* player, Enemy* enemy)
 		else
 			return 2;
 
+		//player->takeDamage()
+		//enemy->attack()
+
 		//Enemy attack.
-		std::cout << enemy->getName << " did: " << enemy->attack(player->takeDamage) << " damage!" << std::endl;
+		std::cout << enemy->getName() << " did: " << enemy->attack(player->takeDamage) << " damage!" << std::endl;
 		system("pause");
 	}
 
-	return player->getHealth > 0;
+	return player->getHealth() > 0;
 }
 
 int main()
