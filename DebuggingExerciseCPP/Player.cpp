@@ -2,9 +2,7 @@
 
 float Player::takeDamage(float damage)
 {
-    float totalDamage = damage - m_shield.getStatusBoost();
-
-    return takeDamage(damage);
+    return Character::takeDamage(damage);
 }
 
 float Player::attack(Character* other)
