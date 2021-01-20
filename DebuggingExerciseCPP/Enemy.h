@@ -1,12 +1,12 @@
 #pragma once
 #include "Character.h"
 
-class Enemy :
-    public Character
+class Enemy : public Character
 {
 public:
     Enemy() : Character() {}
-    Enemy(const char* name, float health, float damage, float defense);
+    Enemy(const char* name, float health, float damage, float defense) :
+        Character(name, health, damage, defense) {};
     
     //Inheritered via Character
     /// <summary>
@@ -14,6 +14,6 @@ public:
     /// </summary>
     /// <param name="other">The other character to attack.</param>
     /// <returns>The total damage dealt.</returns>
-    virtual float attack(Character* other);
+    float attack(Character* other) override;
 };
 

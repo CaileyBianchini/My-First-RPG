@@ -1,7 +1,6 @@
+#include <iostream>
 #include "Player.cpp"
 #include "Enemy.cpp";
-#include "Character.cpp";
-#include <iostream>
 
 /// <summary>
 /// Prints a menu with the given options to the screen.
@@ -87,11 +86,8 @@ int startPlayerBattle(Player* player, Enemy* enemy)
 		else
 			return 2;
 
-		//player->takeDamage()
-		//enemy->attack()
-
 		//Enemy attack.
-		std::cout << enemy->getName() << " did: " << enemy->attack(player->takeDamage) << " damage!" << std::endl;
+		std::cout << enemy->getName() << " did: " << enemy->attack(player) << " damage!" << std::endl;
 		system("pause");
 	}
 
@@ -110,7 +106,7 @@ int main()
 
 	//Gets player weapon choice and equips the choosen weapon.
 	int choice = printOptions("Pick an Item: ", "Sword", "Shield");
-	if (choice = 1)
+	if (choice == 1)
 		player->equipWeapon(Item(10));
 	else if (choice == 2)
 		player->equipShield(Item(10));
