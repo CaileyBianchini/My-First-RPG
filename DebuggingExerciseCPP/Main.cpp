@@ -53,6 +53,14 @@ void printCharacterStats(Character* character)
 	std::cout << "Defense: " << character->getDefense() << std::endl;
 }
 
+void printCharacterStats(Player* character)
+{
+	std::cout << "Name: " << character->getName << std::endl;
+	std::cout << "Health: " << character->getHealth << std::endl;
+	std::cout << "Attack Power: " << character->getDamage() << std::endl;
+	std::cout << "Defense: " << character->getDefense() << std::endl;
+}
+
 /// <summary>
 /// Begins a battle between the player and the given character. 
 /// Gets player input for decisions and loops until either the player or the character is dead.
@@ -65,7 +73,7 @@ void printCharacterStats(Character* character)
 /// 1- Player has won
 /// 2 - Player has escaped.
 /// </returns>
-int startPlayerBattle(Player* player, Character* enemy)
+int startPlayerBattle(Player* player, Enemy* enemy)
 {
 	//Loop while both the enemy and player are alive.
 	while (player->getHealth > 0 && enemy->getHealth > 0)
@@ -73,7 +81,7 @@ int startPlayerBattle(Player* player, Character* enemy)
 		system("cls");
 
 		//Display stats for both characters.
-		printCharacterStats(Player::player);
+		printCharacterStats(player);
 		std::cout << std::endl;
 		printCharacterStats(enemy);
 		std::cout << std::endl;
@@ -113,7 +121,7 @@ int main()
 		player->equipShield(Item(10));
 
 	//Initialize new enemy.
-	Enemy enemy = Enemy("Monster", 50, 10, 5);
+	Enemy* enemy = new Enemy("Monster", 50, 10, 5);
 	
 	//Start battle with enemy and player and record the result.
 	int result = startPlayerBattle(player, enemy);
