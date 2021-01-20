@@ -1,4 +1,6 @@
-#include "Player.h"
+#include "Player.cpp"
+#include "Enemy.cpp";
+#include "Character.cpp";
 #include <iostream>
 
 /// <summary>
@@ -71,7 +73,7 @@ int startPlayerBattle(Player* player, Character* enemy)
 		system("cls");
 
 		//Display stats for both characters.
-		printCharacterStats(player);
+		printCharacterStats(Player::player);
 		std::cout << std::endl;
 		printCharacterStats(enemy);
 		std::cout << std::endl;
@@ -86,11 +88,11 @@ int startPlayerBattle(Player* player, Character* enemy)
 			return 2;
 
 		//Enemy attack.
-		std::cout << enemy->getName << " did: " << enemy->attack(player) << " damage!" << std::endl;
+		std::cout << enemy->getName << " did: " << enemy->attack(player->takeDamage) << " damage!" << std::endl;
 		system("pause");
 	}
 
-	return player->getHealth() > 0;
+	return player->getHealth > 0;
 }
 
 int main()
@@ -106,12 +108,12 @@ int main()
 	//Gets player weapon choice and equips the choosen weapon.
 	int choice = printOptions("Pick an Item: ", "Sword", "Shield");
 	if (choice = 1)
-		player.equipWeapon(Item(10));
+		player->equipWeapon(Item(10));
 	else if (choice == 2)
-		player.equipShield(Item(10));
+		player->equipShield(Item(10));
 
 	//Initialize new enemy.
-	Enemy* enemy = new Enemy("Monster", 50, 10, 5);
+	Enemy enemy = Enemy("Monster", 50, 10, 5);
 	
 	//Start battle with enemy and player and record the result.
 	int result = startPlayerBattle(player, enemy);
